@@ -7,12 +7,14 @@ CONTAINER_NAME="lab-docker-basic"
 # Создаём папку для сертификатов
 mkdir -p certs
 
-# Генерируем самоподписанный SSL-сертификат
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-  -keyout certs/nginx.key \
-  -out certs/nginx.crt \
-  -subj "/CN=localhost" \
-  -addext "subjectAltName=DNS:localhost,IP:127.0.0.1"
+# Генерируем самоподписанный SSL-сертификат, если файла сертификата ещё нет
+if [[ ! -f certs/nginx.crt ]]; then
+    openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -keyout certs/nginx.key \
+    -out certs/nginx.crt \
+    -subj "/CN=localhost" \
+    -addext "subjectAltName=DNS:localhost,IP:127.0.0.1"
+fi
 
 # Права на приватный ключ
 chmod 600 certs/nginx.key
