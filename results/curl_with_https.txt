@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Docker basics Lab</title>
+</head>
+<body>
+    <h1>Привет из Docker-контейнера!</h1>
+    <p>Снаружи контейнер доступен через порт 54321.</p>
+</body>
+</html>
